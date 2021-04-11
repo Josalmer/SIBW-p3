@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}
+Evento
+{% endblock %}
+{% block main %}
+<aside class="links-wrapper">
+  <a class="related-link" href="https://github.com/Josalmer" target="#">
+    <img src="assets/images/github.png" class="link-image" />
+  </a>
+  <a class="related-link" href="https://josalmer.github.io/" target="#">
+    <img src="assets/images/github-io.png" class="link-image" />
+  </a>
+  <a class="related-link" href="https://www.linkedin.com/in/jose-saldaña-mercado-1525b5156" target="#">
+    <img src="assets/images/linkedin.png" class="link-image" />
+  </a>
+  <a class="related-link" href="http://lapicanta.com/" target="#">
+    <img src="assets/images/la-picanta.png" class="link-image" />
+  </a>
+</aside>
+<section class="event-wrapper">
+  <figure class="event-image">
+    <img src="assets/images/events/1.jpeg" />
+  </figure>
+  <article>
+    <div class="main-data">
+      <h2>Evento 1</h2>
+      <h3>Jose Saldaña</h3>
+      <h4>04 de Marzo de 2021 a las 19:46</h4>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel mi ac enim pulvinar condimentum. Cras in
+      porttitor eros. Mauris quis varius risus, at ullamcorper libero. Nam felis tortor, cursus nec arcu sit amet,
+      rutrum efficitur neque. Etiam a aliquet nunc. Duis lacinia, ante non iaculis porttitor, leo magna tempus diam,
+      eget mollis magna quam vehicula odio. Fusce a posuere nibh, non imperdiet ipsum. Donec sit amet risus pretium,
+      porttitor ligula consectetur, facilisis nisl. Nullam et convallis nisi. Donec fringilla consequat velit, ac
+      venenatis velit dictum eu. Curabitur congue lobortis purus in tempus. Cras fringilla nisl ligula, ac fermentum ex
+      dapibus scelerisque. Etiam posuere nulla non ultricies porttitor. Nam fermentum sapien sed orci consectetur
+      ultricies. Ut vitae aliquet erat.
+    </p>
+    <p>
+      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent at
+      fringilla metus. Ut dapibus lacus eu nunc iaculis, eget accumsan nisl pretium. Mauris non sapien ac diam dictum
+      mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi
+      pellentesque dictum efficitur. Integer ut faucibus tortor, sed vulputate dui. Nam in nisl at nisi feugiat
+      vestibulum. Aliquam posuere tortor non velit pharetra, sit amet lacinia est eleifend. Vivamus mattis nunc tortor,
+      vel eleifend odio varius a. Fusce egestas nulla nulla, in tincidunt urna maximus vel. Ut bibendum viverra lacus a
+      interdum. Vivamus scelerisque interdum euismod. Morbi a elit convallis, vestibulum arcu sed, rutrum mi. Nulla
+      ultricies libero quis leo vehicula, a mollis augue pulvinar.
+    </p>
+    <p>
+      Nam dignissim egestas sapien, nec tempor tortor iaculis ut. Nunc sagittis in libero sit amet mollis. Vivamus
+      porttitor at libero nec porttitor. Curabitur non enim id nulla malesuada tempus et quis quam. Phasellus felis
+      diam, convallis vel quam eget, porttitor laoreet mauris. Fusce eu eros at leo pellentesque fringilla. Praesent
+      varius risus et turpis porttitor, ac bibendum tortor aliquam. Maecenas lacinia quam vel mattis sollicitudin.
+    </p>
+    <p>
+      Puede obtener más información en <a href="https://www.cirquedusoleil.com/es/espectaculos">la web oficial del circo
+        del sol</a> o llamando al <strong>958 123 456 789</strong>.
+    </p>
+    <div class="social-buttons">
+      <img src="assets/images/social-buttons/facebook.png" class="social-button" />
+      <img src="assets/images/social-buttons/twitter.png" class="social-button" />
+      <a href="evento_imprimir.html" target="#">
+        <img src="assets/images/print.png" class="social-button" />
+      </a>
+      <button id="display-comments" class="button" type="button">Ver comentarios</button>
+    </div>
+  </article>
+</section>
+<aside id="comments-wrapper">
+  <button id="hide-comments" class="button" type="button">Ocultar comentarios</button>
+  <div id="comments-list">
+    <element class="comment-wrapper">
+      <div class="comment-details">
+        <span>Jose Saldaña</span>
+        <span>13/03/21, 18:51</span>
+      </div>
+      <p>Nam dignissim egestas sapien, nec tempor tortor iaculis ut. Nunc sagittis in libero sit amet mollis. Vivamus
+        porttitor at libero nec porttitor. Curabitur non enim id nulla malesuada tempus et quis quam.</p>
+    </element>
+    <element class="comment-wrapper">
+      <div class="comment-details">
+        <span>Juan Calvo</span>
+        <span>21/03/21, 10:12</span>
+      </div>
+      <p>Vivamus porttitor at libero nec porttitor. Curabitur non enim id nulla malesuada tempus et quis quam.</p>
+    </element>
+  </div>
+  <form class="comment-form">
+    <input type="text" name="name" placeholder="Escriba su nombre aquí">
+    <input type="text" name="email" placeholder="Escriba su email aquí">
+    <textarea name="comment" name="comment" rows="10" placeholder="Escriba su comentario aquí"></textarea>
+    <button id="send-comment" class="button" type="button">Enviar comentario</button>
+  </form>
+</aside>
+<div id="warning-modal">
+  <div class="modal-content">
+    <p>Para enviar un comentario, rellena el tu nombre, un email válido y tu comentario</p>
+    <span class="close">&times;</span>
+  </div>
+</div>
+{% endblock %}

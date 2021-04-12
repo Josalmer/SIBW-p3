@@ -1,22 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}
-Evento
+{{ event.title }}
 {% endblock %}
 {% block main %}
-<aside class="links-wrapper">
-  <a class="related-link" href="https://github.com/Josalmer" target="#">
-    <img src="assets/images/github.png" class="link-image" />
-  </a>
-  <a class="related-link" href="https://josalmer.github.io/" target="#">
-    <img src="assets/images/github-io.png" class="link-image" />
-  </a>
-  <a class="related-link" href="https://www.linkedin.com/in/jose-saldaña-mercado-1525b5156" target="#">
-    <img src="assets/images/linkedin.png" class="link-image" />
-  </a>
-  <a class="related-link" href="http://lapicanta.com/" target="#">
-    <img src="assets/images/la-picanta.png" class="link-image" />
-  </a>
-</aside>
 <section class="event-wrapper">
   <figure class="event-image">
     <img src="assets/images/events/1.jpeg" />
@@ -25,17 +11,10 @@ Evento
     <div class="main-data">
       <h2>{{ event.title | title }}</h2>
       <h3>{{ event.author | title }}</h3>
-      <h4>{{ event.date | date("d/m/Y") }}</h4>
+      <h4>{{ event.updated_at | date("d/m/Y") }}</h4>
     </div>
     {{ event.body | raw }}
-    <div class="social-buttons">
-      <img src="assets/images/social-buttons/facebook.png" class="social-button" />
-      <img src="assets/images/social-buttons/twitter.png" class="social-button" />
-      <a href="evento_imprimir.html" target="#">
-        <img src="assets/images/print.png" class="social-button" />
-      </a>
-      <button id="display-comments" class="button" type="button">Ver comentarios</button>
-    </div>
+    {{ include('components/social-buttons.html') }}
   </article>
 </section>
 <aside id="comments-wrapper">

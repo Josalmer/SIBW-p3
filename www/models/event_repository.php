@@ -1,24 +1,35 @@
 <?php
-include(dirname(__FILE__)."/../db.php");
+  include(dirname(__FILE__)."/../db.php");
 
-class eventRepository {
+  class eventRepository {
     protected $db;
 
     public function __construct() {
-        $this->db = db::getDBSingleton();
+      $this->db = db::getDBSingleton();
     }
 
     public function getEvent($evID) {
+      if (is_numeric($evID)) {
         $queryResult = $this->db::query("SELECT title, author, body, updated_at FROM events WHERE id={$evID}");
 
         if($queryResult->num_rows > 0) {
-            $row = $queryResult->fetch_assoc();
-            $event['title']=$row['title'];
-            $event['author']=$row['author'];
-            $event['body']=$row['body'];
-            $event['date']=$row['updated_at'];
+          $row = $queryResult->fetch_assoc();
+          $event['title']=$row['title'];
+          $event['author']=$row['author'];
+          $event['body']=$row['body'];
+          $event['updated_at']=$row['updated_at'];
+          return $event;
         }
-        return $event;
+      }
     }
-}
+
+    public function getAllEvents() {
+      $queryResult = $this->db::query("SELECT id, title FROM events");
+
+      if($queryResult->num_rows > 0) {
+        $events = $queryResult->fetch_all(MYSQLI_ASSOC);
+        return $events;
+      }
+    }
+  }
 ?>

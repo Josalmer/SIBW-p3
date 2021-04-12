@@ -6,9 +6,18 @@
   $twig = new \Twig\Environment($loader);
   $eventRepository = new eventRepository();
 
-  $evID = 2;
+  $evID;
+  $event = null;
 
-  $event = $eventRepository->getEvent($evID);
+  if(isset($_GET['ev'])) {
+      $evID = $_GET['ev'];
+      $event = $eventRepository->getEvent($evID);
+  }
+
+  if(!is_null($event)) {
+    echo $twig->render('pages/event.html', ['event' => $event]);
+  } else {
+    echo $twig->render('pages/not-found.html');
+  }
   
-  echo $twig->render('pages/event.html', ['event' => $event]);
 ?>

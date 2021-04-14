@@ -1,11 +1,13 @@
 <?php
 
 class db {
-    static $database = "SIBW";
-    static $username = "saldana";
-    static $password = "kjd8sSDm0";
+    private static $instance;
 
-    static $connection;
+    private static $database = "SIBW";
+    private static $username = "saldana";
+    private static $password = "kjd8sSDm0";
+
+    private static $connection;
 
     private function __construct() {
         self::$connection = new mysqli("mysql", self::$username, self::$password, self::$database);
@@ -15,14 +17,13 @@ class db {
     }
 
     public static function getDBSingleton() {
-        if (is_null(self::$connection)) {
-            return new self();
-        } else {
-            return self;
+        if (!self::$instance instanceof self) {
+            self::$instance = new self();
         }
+        return self::$instance;
     }
 
-    public static function query($query) {
+    public function query($query) {
         $queryResult = self::$connection->query($query);
         return $queryResult;
     }

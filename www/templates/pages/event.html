@@ -5,7 +5,7 @@
 {% block main %}
 <section class="event-wrapper">
   <figure class="event-image">
-    <img src="uploads/event-images/{{event.id}}.jpeg" />
+    <img src="uploads/event_images/{{event.id}}.jpeg" />
   </figure>
   <article>
     <div class="main-data">
@@ -14,8 +14,8 @@
       <h4>{{ event.updated_at | date("d/m/Y") }}</h4>
     </div>
     {{ event.body | raw }}
-    {{ include('components/social-buttons.html') }}
+    {{ include('components/social_buttons.html') }}
   </article>
 </section>
-{{ include('components/event-comments.html') }}
+{{ include('components/event_comments.html') }}
 {% endblock %}

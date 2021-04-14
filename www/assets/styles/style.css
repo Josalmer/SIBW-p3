@@ -140,6 +140,17 @@ footer {
     justify-content: flex-end;
 }
 
+
+/* --------- Not Found page --------- */
+
+.not-found-wrapper {
+    width: 100%;
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
 /* --------- Responsive Media Query --------- */
 
 @media only screen and (max-width: 800px) {

@@ -1,5 +1,4 @@
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-const BANNED_WORDS = ['tonto', 'feo', 'imbécil', 'estúpido', 'caca', 'culo', 'pene', 'gilipollas', 'idiota', 'puta' ]
 
 document.addEventListener("DOMContentLoaded", () => setListeners());
 
@@ -70,7 +69,7 @@ function closeWarningModal(target) {
 function adultsFilter() {
     var commentField = document.getElementsByName("comment")[0];
     var comment = commentField.value;
-    BANNED_WORDS.forEach(word => {
+    BANNED_WORDS.map(w => w.word).forEach(word => {
         var wordRegex = new RegExp(word, "i");
         if (wordRegex.test(comment)) {
             var ban = '';

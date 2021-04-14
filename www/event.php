@@ -24,3 +24,6 @@
     }
 
 ?>
+<script>
+    const BANNED_WORDS= <?php echo json_encode($forbiddenWords); ?>;
+</script>

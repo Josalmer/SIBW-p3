@@ -1,7 +1,7 @@
 <?php
-  include(dirname(__FILE__)."/../db.php");
+  include(dirname(__FILE__)."/../config/db.php");
 
-  class eventRepository {
+  class eventsRepository {
     protected $db;
 
     public function __construct() {
@@ -10,10 +10,11 @@
 
     public function getEvent($evID) {
       if (is_numeric($evID)) {
-        $queryResult = $this->db::query("SELECT title, author, body, updated_at FROM events WHERE id={$evID}");
+        $queryResult = $this->db::query("SELECT id, title, author, body, updated_at FROM events WHERE id={$evID}");
 
         if($queryResult->num_rows > 0) {
           $row = $queryResult->fetch_assoc();
+          $event['id']=$row['id'];
           $event['title']=$row['title'];
           $event['author']=$row['author'];
           $event['body']=$row['body'];

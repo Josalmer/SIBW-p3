@@ -23,8 +23,14 @@ class db {
         return self::$instance;
     }
 
-    public function query($query) {
-        $queryResult = self::$connection->query($query);
+    public function query($query, $params) {
+        $preparedQuery = self::$connection->prepare($query);
+        if (count($params) > 0) {
+            $types = str_repeat('s', count($params));
+            $preparedQuery->bind_param($types, ...$params);
+        }
+        $preparedQuery->execute();
+        $queryResult = $preparedQuery->get_result();
         return $queryResult;
     }
 }

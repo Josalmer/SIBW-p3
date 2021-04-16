@@ -2,7 +2,7 @@
 <aside id="comments-wrapper">
     <button id="hide-comments" class="button" type="button">Ocultar comentarios</button>
     <div id="comments-list">
-        {% for comment in comments %}
+        {% for comment in event.comments %}
         <element class="comment-wrapper">
             <div class="comment-details">
                 <span>{{comment.author | title }}</span>

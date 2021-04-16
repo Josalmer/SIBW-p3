@@ -2,21 +2,15 @@
 <aside id="comments-wrapper">
     <button id="hide-comments" class="button" type="button">Ocultar comentarios</button>
     <div id="comments-list">
+        {% for comment in comments %}
         <element class="comment-wrapper">
-        <div class="comment-details">
-            <span>Jose Saldaña</span>
-            <span>13/03/21, 18:51</span>
-        </div>
-        <p>Nam dignissim egestas sapien, nec tempor tortor iaculis ut. Nunc sagittis in libero sit amet mollis. Vivamus
-            porttitor at libero nec porttitor. Curabitur non enim id nulla malesuada tempus et quis quam.</p>
+            <div class="comment-details">
+                <span>{{comment.author | title }}</span>
+                <span>{{ comment.created_at | date("d/m/Y") }}</span>
+            </div>
+            <p>{{ comment.body }}</p>
         </element>
-        <element class="comment-wrapper">
-        <div class="comment-details">
-            <span>Juan Calvo</span>
-            <span>21/03/21, 10:12</span>
-        </div>
-        <p>Vivamus porttitor at libero nec porttitor. Curabitur non enim id nulla malesuada tempus et quis quam.</p>
-        </element>
+        {% endfor %}
     </div>
     <form class="comment-form">
         <input type="text" name="name" placeholder="Escriba su nombre aquí">

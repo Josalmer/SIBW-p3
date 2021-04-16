@@ -1,7 +1,7 @@
 {% if event.gallery %}
-    <ul>
+    <div class="gallery-wrapper">
         {% for gallery_image in event.gallery %}
-        <li><img src="{{gallery_image.image_url}}" /></li>
+        <img class="gallery-image" src="{{gallery_image.image_url}}" />
         {% endfor %}
-    </ul>
+    </div>
 {% endif %}

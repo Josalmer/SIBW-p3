@@ -169,6 +169,18 @@ textarea {
 
 /* --------- Images Gallery --------- */
 
+.gallery-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.gallery-image {
+    margin-top: 1em;
+    min-width: 180px;
+    width: 30%;
+}
 
 /* --------- Responsive Media Query --------- */
 
@@ -178,5 +190,9 @@ textarea {
         display: flex;
         justify-content: center;
         margin-bottom: 30px;
+    }
+
+    .gallery-image {
+        width: 48%;
     }
 }

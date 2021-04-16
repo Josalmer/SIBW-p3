@@ -15,12 +15,7 @@
         $event = $eventRepository->getEvent($evID);
     }
 
-    if(!is_null($event)) {
-        echo $twig->render('pages/event.html', ['event' => $event, 'forbiddenWords' => $forbiddenWords]);
-    } else {
-        echo $twig->render('pages/not_found.html');
-    }
-
+    echo $twig->render('pages/event.html', ['event' => $event, 'forbiddenWords' => $forbiddenWords]);
 ?>
 <script>
     const BANNED_WORDS= <?php echo json_encode($forbiddenWords); ?>;

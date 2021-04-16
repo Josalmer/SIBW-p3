@@ -3,12 +3,12 @@
 Portada
 {% endblock %}
 {% block main %}
-<section class="events-wrapper">
-  {% for event in events %}
-  <a class="event" href="/event/{{event.id}}">
-    <img src="{{event.image_url}}" class="event-logo" />
-    <p class="event-name">{{ event.title }}</p>
-  </a>
-  {% endfor %}
-</section>
+    <section class="events-wrapper">
+        {% for event in events %}
+        <a class="event" href="/event/{{event.id}}">
+            <img src="{{event.image_url}}" class="event-logo" />
+            <p class="event-name">{{ event.title }}</p>
+        </a>
+        {% endfor %}
+    </section>
 {% endblock %}

@@ -14,6 +14,7 @@
       <h4>{{ event.updated_at | date("d/m/Y") }}</h4>
     </div>
     {{ event.body | raw }}
+    {{ include('components/event_image_gallery.html') }}
     {{ include('components/social_buttons.html') }}
   </article>
 </section>

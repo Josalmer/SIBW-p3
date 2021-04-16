@@ -5,12 +5,13 @@
     $eventRepository = new eventsRepository();
     $forbiddenWordsRepository = new forbiddenWordsRepository();
 
-    $evID;
+    $params = substr($uri, strlen("/event/"));
+
+    $evID = intval($params);
     $event = null;
     $forbiddenWords = $forbiddenWordsRepository->getAllForbiddenWords();
 
-    if(isset($_GET['ev'])) {
-        $evID = $_GET['ev'];
+    if($evID > 0) {
         $event = $eventRepository->getEvent($evID);
     }
 

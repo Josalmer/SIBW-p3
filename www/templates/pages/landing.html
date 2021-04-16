@@ -5,8 +5,8 @@ Portada
 {% block main %}
 <section class="events-wrapper">
   {% for event in events %}
-  <a class="event" href="/event.php?ev={{event.id}}">
-    <img src="public/event_images/{{event.id}}.jpeg" class="event-logo" />
+  <a class="event" href="/event/{{event.id}}">
+    <img src="/public/event_images/{{event.id}}.jpeg" class="event-logo" />
     <p class="event-name">{{ event.title }}</p>
   </a>
   {% endfor %}

@@ -1,7 +1,7 @@
 /* --------- Globals --------- */
 
-@import "portada.css";
-@import "evento.css";
+@import "landing.css";
+@import "event.css";
 
 html * {
     font-family: fantasy;

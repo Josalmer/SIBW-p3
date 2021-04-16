@@ -1,0 +1,11 @@
+RedirectMatch 404 /templates
+RedirectMatch 404 /config
+RedirectMatch 404 /models
+RedirectMatch 404 /controllers
+
+RewriteEngine On
+RewriteBase /
+Options -Indexes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.php [L]

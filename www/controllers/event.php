@@ -1,10 +1,7 @@
 <?php
-    require_once (dirname(__FILE__)."/config/server_initializer.php");
-    include(dirname(__FILE__)."/models/events.repository.php");
-    include(dirname(__FILE__)."/models/forbidden_words.repository.php");
+    include(dirname(__FILE__)."/../models/events.repository.php");
+    include(dirname(__FILE__)."/../models/forbidden_words.repository.php");
 
-    $loader = new \Twig\Loader\FilesystemLoader('templates');
-    $twig = new \Twig\Environment($loader);
     $eventRepository = new eventsRepository();
     $forbiddenWordsRepository = new forbiddenWordsRepository();
 

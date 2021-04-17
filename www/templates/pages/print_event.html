@@ -1,4 +1,4 @@
-{% extends 'page_base.html' %}
+{% extends 'print_base.html' %}
 {% block title %}
 {{ event.title }}
 {% endblock %}
@@ -6,10 +6,7 @@
     {% if event %}
     <section class="event-wrapper">
         {{ include('components/event_partial.html') }}
-        {{ include('components/event_image_gallery.html') }}
-        {{ include('components/social_buttons.html') }}
     </section>
-        {{ include('components/event_comments.html') }}
     {% else %}
         <div class="not-found-wrapper">
             <h1>La búsqueda no ha tenido éxito</h1>

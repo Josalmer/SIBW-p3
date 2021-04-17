@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+    <body>
+        <header>
+        {{ include('components/header.html') }}
+        </header>
+        <main>
+        {{ include('components/links.html') }}
+        {% block main %}
+        {% endblock %}
+        </main>
+        <footer>
+        {{ include('components/footer.html') }}
+        </footer>
+    </body>
+{% endblock %}

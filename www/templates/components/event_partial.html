@@ -1,0 +1,11 @@
+<figure class="event-image">
+    <img src="{{event.image_url}}" />
+</figure>
+<article>
+    <div class="main-data">
+    <h2>{{ event.title | title }}</h2>
+    <h3>{{ event.author | title }}</h3>
+    <h4>{{ event.updated_at | date("d/m/Y") }}</h4>
+    </div>
+    {{ event.body | raw }}
+</article>

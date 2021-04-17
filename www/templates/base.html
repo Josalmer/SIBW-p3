@@ -8,17 +8,6 @@
         <link href="/assets/styles/style.css" rel="stylesheet" />
     </head>
 
-    <body>
-        <header>
-          {{ include('components/header.html') }}
-        </header>
-        <main>
-          {{ include('components/links.html') }}
-          {% block main %}
-          {% endblock %}
-        </main>
-        <footer>
-          {{ include('components/footer.html') }}
-        </footer>
-    </body>
+    {% block body %}
+    {% endblock %}
 </html>

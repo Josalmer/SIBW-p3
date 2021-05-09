@@ -2,6 +2,7 @@
 
 @import "landing.css";
 @import "event.css";
+@import "authentication.css";
 
 html * {
     font-family: fantasy;
@@ -76,6 +77,15 @@ nav .menu-item {
     margin: 0 10px;
     font-weight: bold;
     font-size: 1.2em;
+}
+
+.user-name {
+    font-style: italic;
+    color: blue;
+}
+
+.logout {
+    color: red;
 }
 
 /* --------- Main --------- */

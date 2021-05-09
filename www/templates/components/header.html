@@ -6,8 +6,17 @@
       <h1 class="site-title">SIBW Práctica 1</h1>
   </div>
   <nav>
-      <a class="menu-item" href="/">Mis eventos</a>
       <a class="menu-item" href="/">Próximos eventos</a>
-      <a class="menu-item" href="/">Quienes somos</a>
+      {% if role == "anonimo" %}
+        <a class="menu-item" href="/login">Login</a>
+        <a class="menu-item" href="/signup">Registrarse</a>
+      {% else %}
+        {% if role == "user" %}
+            <a class="menu-item user-name" href="/profile">{{ userName }}</a>
+        {% else %}
+            <a class="menu-item user-name" href="/profile">{{ userName }} ({{ role }})</a>
+        {% endif %}
+        <a class="menu-item logout" href="/logout">Logout</a>
+      {% endif %}
   </nav>
 </div>

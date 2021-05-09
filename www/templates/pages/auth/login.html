@@ -1,0 +1,20 @@
+{% extends 'page_base.html' %}
+{% block title %}
+Login
+{% endblock %}
+{% block main %}
+    <div class="login-form-wrapper">
+        <form class="login-form" action="login.php" method="post">
+            <span class="form-input">
+                Nombre de usuario: <input type="text" name="username" />
+            </span>
+            <span class="form-input">
+                Contraseña: <input type="password" name="password" />
+            </span>
+          <input class="login-button" type="submit" value="Login" />
+        </form>
+        {% if wrongCredentials %}
+          <span class="auth-error">Nombre de usuario o contraseña incorrectos</span>
+        {% endif %}
+    </div>
+{% endblock %}

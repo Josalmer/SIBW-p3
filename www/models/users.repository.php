@@ -1,7 +1,7 @@
 <?php
     class usersRepository {
         public function getUserDetails($userName) {
-            $queryResult = db::getDBSingleton()->query("SELECT id, role_id, username, email, birth_year FROM users WHERE username = ?", [$userName]);
+            $queryResult = db::getDBSingleton()->query("SELECT role_id, username, email, birth_year FROM users WHERE username = ?", [$userName]);
 
             if($queryResult->num_rows > 0) {
                 $user = mysqli_fetch_assoc($queryResult);
@@ -21,6 +21,15 @@
                 $userAuth = mysqli_fetch_assoc($queryResult);
                 return $userAuth['encrypted_password'];
             }
+        }
+
+        public function createUser($username, $email, $birth_year, $password) {
+            $encryptedPassword =  password_hash($password, PASSWORD_DEFAULT);
+            $date = new DateTime();
+            $now = $date->format('Y-m-d H:i:s');
+            $queryResult = db::getDBSingleton()->query("INSERT INTO users(role_id, email, birth_year, username, encrypted_password, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?, ?)", [1, $email, $birth_year, $username, $encryptedPassword, $now, $now]);
+
+            return $queryResult;
         }
     }
 ?>

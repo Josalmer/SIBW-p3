@@ -1,6 +1,6 @@
-/* --------- Login --------- */
+/* --------- Auth (Login $ SignUp) --------- */
 
-.login-form-wrapper {
+.auth-form-wrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,8 @@
     margin: 0 20px;
 }
 
-.login-form {
+.auth-form {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +26,7 @@ input {
     width: 200px;
 }
 
-.login-button {
+.auth-button {
     font-weight: bolder;
     background-color: rgb(223, 213, 213);;
     margin-top: 20px;
@@ -33,9 +34,8 @@ input {
 
 .auth-error {
     margin-top: 20px;
-    padding: 30px;
+    padding: 20px;
     background-color: rgb(241, 87, 87);
-    font-size: 1.4em;
     font-weight: bolder;
 
     border-radius: 10px;

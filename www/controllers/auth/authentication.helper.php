@@ -21,5 +21,17 @@
             session_destroy();
         }
 
+        public function registerUser($username, $email, $birth_year, $password) {
+            $usersRepository = new usersRepository();
+
+            $user = $usersRepository->getUserDetails($username);
+
+            if ($user) {
+                return "El nombre de usuario ya pertenece a un usuario registrado";
+            } else {
+                $user = $usersRepository->createUser($username, $email, $birth_year, $password);
+                return "created";
+            }
+        }
     }
 ?>

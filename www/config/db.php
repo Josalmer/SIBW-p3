@@ -25,13 +25,17 @@ class db {
 
     public function query($query, $params) {
         $preparedQuery = self::$connection->prepare($query);
-        if (count($params) > 0) {
-            $types = str_repeat('s', count($params));
-            $preparedQuery->bind_param($types, ...$params);
+        if ($preparedQuery) {
+            if (count($params) > 0) {
+                $types = str_repeat('s', count($params));
+                $preparedQuery->bind_param($types, ...$params);
+            }
+            $preparedQuery->execute();
+            $queryResult = $preparedQuery->get_result();
+            return $queryResult;
+        } else {
+            echo "Malformed query";
         }
-        $preparedQuery->execute();
-        $queryResult = $preparedQuery->get_result();
-        return $queryResult;
     }
 }
 ?>

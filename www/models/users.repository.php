@@ -31,5 +31,18 @@
 
             return $queryResult;
         }
+
+        public function updateUser($oldUsername, $username, $email, $birth_year, $password) {
+            $date = new DateTime();
+            $now = $date->format('Y-m-d H:i:s');
+            if ($password != '*******') {
+                $encryptedPassword =  password_hash($password, PASSWORD_DEFAULT);
+                $queryResult = db::getDBSingleton()->query("UPDATE users set email = ?, birth_year = ?, username = ?, encrypted_password = ?, updated_at = ? WHERE username = ?", [$email, $birth_year, $username, $encryptedPassword, $now, $oldUsername]);
+            } else {
+                $queryResult = db::getDBSingleton()->query("UPDATE users set email = ?, birth_year = ?, username = ?, updated_at = ? WHERE username = ?", [$email, $birth_year, $username, $now, $oldUsername]);
+            }
+
+            return $queryResult;
+        }
     }
 ?>

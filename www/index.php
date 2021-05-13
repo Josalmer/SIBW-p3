@@ -17,6 +17,8 @@
         include(dirname(__FILE__)."/controllers/auth/logout.php");
     } else if (startsWith($uri, "/signup")) {
         include(dirname(__FILE__)."/controllers/auth/signup.php");
+    } else if (startsWith($uri, "/profile")) {
+        include(dirname(__FILE__)."/controllers/profile.php");
     } else {
         include(dirname(__FILE__)."/controllers/landing.php");
     }

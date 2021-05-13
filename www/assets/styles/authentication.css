@@ -40,3 +40,12 @@ input {
 
     border-radius: 10px;
 }
+
+.user-edited {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgb(143, 240, 143);
+    font-weight: bolder;
+
+    border-radius: 10px;
+}

@@ -6,16 +6,16 @@ Registro
     <div class="auth-form-wrapper">
         <form class="auth-form" action="signup.php" method="post">
             <span class="form-input">
-                Nombre de usuario: <input type="text" name="username" />
+                Nombre de usuario: <input type="text" name="username" value="{{username}}" />
             </span>
             <span class="form-input">
-                Email: <input type="text" name="email" />
+                Email: <input type="text" name="email" value="{{email}}" />
             </span>
             <span class="form-input">
-                Año de nacimiento: <input type="number" name="birth_year" />
+                Año de nacimiento: <input type="number" name="birth_year" value="{{birth_year}}" />
             </span>
             <span class="form-input">
-                Contraseña: <input type="password" name="password" />
+                Contraseña: <input type="password" name="password" value="{{password}}" />
             </span>
           <input class="auth-button" type="submit" value="Registrarse" />
         </form>

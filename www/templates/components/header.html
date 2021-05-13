@@ -7,14 +7,14 @@
   </div>
   <nav>
       <a class="menu-item" href="/">Próximos eventos</a>
-      {% if role == "anonimo" %}
+      {% if user.role == "anonimo" %}
         <a class="menu-item" href="/login">Login</a>
         <a class="menu-item" href="/signup">Registrarse</a>
       {% else %}
-        {% if role == "user" %}
-            <a class="menu-item user-name" href="/profile">{{ userName }}</a>
+        {% if user.role == "user" %}
+            <a class="menu-item user-name" href="/profile">{{ user.username }}</a>
         {% else %}
-            <a class="menu-item user-name" href="/profile">{{ userName }} ({{ role }})</a>
+            <a class="menu-item user-name" href="/profile">{{ user.username }} ({{ user.role }})</a>
         {% endif %}
         <a class="menu-item logout" href="/logout">Logout</a>
       {% endif %}

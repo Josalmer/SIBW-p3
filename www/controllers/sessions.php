@@ -1,9 +1,8 @@
 <?php
   session_start();
 
-  if (!isset($_SESSION['userName'])) {
-    $_SESSION['userRole'] = "anonimo";
+  if (!isset($_SESSION['user'])) {
+    $_SESSION['user']['role'] = "anonimo";
   }
-  echo $twig->addGlobal('role', $_SESSION['userRole']);
-  echo $twig->addGlobal('userName', $_SESSION['userName']);
+  echo $twig->addGlobal('user', $_SESSION['user']);
 ?>

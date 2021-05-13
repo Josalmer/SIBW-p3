@@ -12,7 +12,7 @@
         $loggedIn = $authenticationHelper->authenticateUser($username, $password);
 
         if ($loggedIn) {
-            header("Location: landing.php");
+            header("Location: landing");
             exit();
         } else {
             $wrongCredentials = true;

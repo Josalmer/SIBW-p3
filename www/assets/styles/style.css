@@ -3,6 +3,7 @@
 @import "landing.css";
 @import "event.css";
 @import "authentication.css";
+@import "admin.css";
 
 html * {
     font-family: fantasy;
@@ -30,6 +31,21 @@ body {
     background-color: rgb(223, 213, 213);
     border-radius: 5px;
     border: transparent;
+}
+
+table, th, td {
+    border: 1px solid rgb(223, 213, 213);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px 10px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 /* --------- Header --------- */

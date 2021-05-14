@@ -4,13 +4,20 @@
     class authenticationHelper {
 
         public function getRegisteredUser() {
-            $usersRepository = new usersRepository();
-
-            if (!isset($_SESSION['user'])) {
+            if (!isset($_SESSION['user']) || $_SESSION['user']['role'] == "anonimo") {
                 header("Location: landing");
                 exit();
             } else {
                 return $_SESSION['user'];
+            }
+        }
+
+        public function adminGuard() {
+            if (!isset($_SESSION['user']) || $_SESSION['user']['super'] == 0) {
+                header("Location: landing");
+                exit();
+            } else {
+                return true;
             }
         }
 
@@ -33,12 +40,12 @@
         public function registerUser($username, $email, $birth_year, $password) {
             $usersRepository = new usersRepository();
 
-            $user = $usersRepository->getUserDetails($username);
+            $newUser = $usersRepository->getUserDetails($username);
 
-            if ($user) {
+            if ($newUser) {
                 return "El nombre de usuario ya pertenece a un usuario registrado";
             } else {
-                $user = $usersRepository->createUser($username, $email, $birth_year, $password);
+                $newUser = $usersRepository->createUser($username, $email, $birth_year, $password);
                 return "created";
             }
         }
@@ -46,9 +53,9 @@
         public function updateUser($username, $email, $birth_year, $password) {
             $usersRepository = new usersRepository();
 
-            $user = $usersRepository->getUserDetails($username);
+            $existingUser = $usersRepository->getUserDetails($username);
 
-            if ($user && $username != $user['username']) {
+            if ($existingUser && $username != $user['username']) {
                 return "El nombre de usuario ya pertenece a un usuario registrado";
             } else {
                 $user = $usersRepository->updateUser($_SESSION['user']['username'], $username, $email, $birth_year, $password);

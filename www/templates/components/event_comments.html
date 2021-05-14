@@ -16,18 +16,17 @@
             <p class="no-comments-msg">Aún no hay comentarios en este evento, animese a ser el primero</p>
         {% endif %}
     </div>
-    <form class="comment-form">
-        <input type="text" name="name" placeholder="Escriba su nombre aquí">
-        <input type="text" name="email" placeholder="Escriba su email aquí">
-        <textarea name="comment" name="comment" rows="10" placeholder="Escriba su comentario aquí"></textarea>
-        <button id="send-comment" class="button" type="button">Enviar comentario</button>
-    </form>
+    {% if user.role != "anonimo" %}
+        <form class="comment-form">
+            <textarea name="comment" name="comment" event="{{event.id}}" username="{{user.username}}" role="{{user.role}}" rows="10" placeholder="Escriba su comentario aquí"></textarea>
+            <button id="send-comment" class="button" type="button">Enviar comentario</button>
+        </form>
+    {% endif %}
 </aside>
 <div id="warning-modal">
     <div class="modal-content">
-        <p>Para enviar un comentario, rellena el tu nombre, un email válido y tu comentario</p>
+        <p>Rellene el comentario antes de enviarlo.</p>
         <span class="close">&times;</span>
     </div>
 </div>
 <script src="/assets/scripts/comments.js"></script>
-  

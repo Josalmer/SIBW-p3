@@ -25,6 +25,8 @@
         include(dirname(__FILE__)."/controllers/admin.php");
     } else if (startsWith($uri, "/comments")) {
         include(dirname(__FILE__)."/controllers/comments.php");
+    } else if (startsWith($uri, "/comment")) {
+        include(dirname(__FILE__)."/controllers/comment.php");
     } else {
         include(dirname(__FILE__)."/controllers/landing.php");
     }

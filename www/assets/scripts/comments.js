@@ -1,10 +1,8 @@
-const xhttp = new XMLHttpRequest();
-
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-document.addEventListener("DOMContentLoaded", () => setListeners());
+document.addEventListener("DOMContentLoaded", () => setCommentsListeners());
 
-function setListeners() {
+function setCommentsListeners() {
     document.getElementById("display-comments").addEventListener("click", () => showComments());
     document.getElementById("hide-comments").addEventListener("click", () => hideComments());
     let newCommentForm = document.getElementById("send-comment");
@@ -59,7 +57,6 @@ function saveComment(event, name, comment) {
         }
     };
     let data = {
-        type: 'newComment',
         event_id: event,
         author: name,
         body: comment

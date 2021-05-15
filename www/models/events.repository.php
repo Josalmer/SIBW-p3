@@ -7,7 +7,7 @@
                 if($queryResult->num_rows > 0) {
                     $event = mysqli_fetch_assoc($queryResult);
 
-                    $comments = db::getDBSingleton()->query("SELECT id, author, body, created_at FROM comments WHERE event_id = ?", [$evID]);
+                    $comments = db::getDBSingleton()->query("SELECT id, author, body, created_at, edited_by FROM comments WHERE event_id = ?", [$evID]);
                     $event['comments'] = $comments->fetch_all(MYSQLI_ASSOC);
 
                     $gallery = db::getDBSingleton()->query("SELECT id, image_url FROM gallery_images WHERE event_id = ?", [$evID]);

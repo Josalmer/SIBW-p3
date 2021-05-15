@@ -1,11 +1,13 @@
 {% extends 'page_base.html' %}
 {% block title %}
-Moderación del sitio
+Editar comentario
 {% endblock %}
 {% block main %}
     <section class="admin-section">
         <h1>Moderación del sitio</h1>
-        <h2>Comentarios</h2>
+        <h2>Edición de Comentario</h2>
+
+        {% if comment %}
         <table class="users-table">
             <tr>
                 <td>Evento</td>
@@ -15,7 +17,6 @@ Moderación del sitio
                 <td>Editada por moderador</td>
                 <td>Acciones</td>
             </tr>
-            {% for comment in comments %}
             <tr id="{{comment.id}}">
                 <td>{{comment.event_id}}</td>
                 <td>{{comment.author | title}}</td>
@@ -24,8 +25,13 @@ Moderación del sitio
                 <td>{{comment.edited_by}}</td>
                 <td><span class="comment-action edit" commentid="{{comment.id}}">✏️</span><span class="comment-action delete" commentid="{{comment.id}}">🗑️</span></td>
             </tr>
-            {% endfor %}
         </table>
+        {% else %}
+            <div class="not-found-wrapper">
+                <h1>La búsqueda no ha tenido éxito</h1>
+            </div>
+        {% endif %}
+
     </section>
     <script src="/assets/scripts/moderation.js"></script>
 {% endblock %}

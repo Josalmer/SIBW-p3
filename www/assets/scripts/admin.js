@@ -1,8 +1,6 @@
-const xhttp = new XMLHttpRequest();
+document.addEventListener("DOMContentLoaded", () => setAdminListeners());
 
-document.addEventListener("DOMContentLoaded", () => setListeners());
-
-function setListeners() {
+function setAdminListeners() {
     setAdminCheckboxes();
     setManagerCheckboxes();
     setModeratorCheckboxes();

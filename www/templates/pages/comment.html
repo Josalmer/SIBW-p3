@@ -8,24 +8,20 @@ Editar comentario
         <h2>Edición de Comentario</h2>
 
         {% if comment %}
-        <table class="users-table">
-            <tr>
-                <td>Evento</td>
-                <td>Autor</td>
-                <td>Comentario</td>
-                <td>Fecha publicación</td>
-                <td>Editada por moderador</td>
-                <td>Acciones</td>
-            </tr>
-            <tr id="{{comment.id}}">
-                <td>{{comment.event_id}}</td>
-                <td>{{comment.author | title}}</td>
-                <td>{{comment.body}}</td>
-                <td>{{comment.created_at | date("d/m/Y")}}</td>
-                <td>{{comment.edited_by}}</td>
-                <td><span class="comment-action edit" commentid="{{comment.id}}">✏️</span><span class="comment-action delete" commentid="{{comment.id}}">🗑️</span></td>
-            </tr>
-        </table>
+        <element id="{{comment.id}}" class="comment-wrapper">
+            {% if comment.edited_by %}
+                <span class="tooltip">⚠️
+                    <span class="tooltiptext">Comentario editador por el moderador {{comment.edited_by}}</span>
+                </span>
+            {% endif %}
+            <div class="comment-details">
+                <span>Evento: {{ comment.event_id }}</span>
+                <span>Autor: {{ comment.author | title }}</span>
+                <span>Creado el: {{ comment.created_at | date("d/m/Y") }}</span>
+            </div>
+            <textarea id="comment-body" name="comment" rows="16" body="{{ comment.body }}" commentid="{{ comment.id }}"></textarea>
+            <button id="update-comment" class="button" type="button">Editar comentario</button>
+        </element>
         {% else %}
             <div class="not-found-wrapper">
                 <h1>La búsqueda no ha tenido éxito</h1>

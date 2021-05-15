@@ -26,7 +26,7 @@
     </div>
     {% if user.role != "anonimo" %}
         <form class="comment-form">
-            <textarea name="comment" name="comment" event="{{event.id}}" username="{{user.username}}" role="{{user.role}}" rows="10" placeholder="Escriba su comentario aquí"></textarea>
+            <textarea name="comment" event="{{event.id}}" username="{{user.username}}" role="{{user.role}}" rows="10" placeholder="Escriba su comentario aquí"></textarea>
             <button id="send-comment" class="button" type="button">Enviar comentario</button>
         </form>
     {% endif %}

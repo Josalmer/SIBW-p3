@@ -29,7 +29,7 @@
             return 'correct';
         }
 
-        public function updateCommnent($commentID, $newBody) {
+        public function updateComment($commentID, $newBody) {
             $date = new DateTime();
             $now = $date->format('Y-m-d H:i:s');
 

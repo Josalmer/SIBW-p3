@@ -6,7 +6,8 @@
     font-size: 2.4em;
 }
 
-.users-table {
+.users-table, .comments-table, .events-table {
+    width: 98%;
     margin-top: 20px;
 }
 

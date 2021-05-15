@@ -167,6 +167,23 @@ footer {
     justify-content: flex-end;
 }
 
+/* --------- SearchBar --------- */
+
+.searchbar {
+    width: 95%;
+    margin-top: 20px;
+}
+
+.search-input {
+    width: 92%;
+}
+
+.lupa {
+    margin-left: 10px;
+    font-size: 2em;
+    cursor: pointer;
+}
+
 /* --------- Responsive Media Query --------- */
 
 @media only screen and (max-width: 800px) {

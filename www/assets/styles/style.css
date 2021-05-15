@@ -4,6 +4,7 @@
 @import "event.css";
 @import "authentication.css";
 @import "admin.css";
+@import "comment.css";
 
 html * {
     font-family: fantasy;

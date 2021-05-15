@@ -1,6 +1,9 @@
 <?php
-    include(dirname(__FILE__)."/../models/comments.repository.php");
+    include(dirname(__FILE__)."/auth/authentication.helper.php");
+    $authenticationHelper = new authenticationHelper();
+    $authenticationHelper->moderatorGuard();
 
+    include(dirname(__FILE__)."/../models/comments.repository.php");
     $commentsRepository = new commentsRepository();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,4 +19,8 @@
         echo $response;
         return;
     }
+
+    $comments = $commentsRepository->getAllComments();
+    
+    echo $twig->render('pages/comments.html', ['comments' => $comments]);
 ?>

@@ -7,5 +7,14 @@
 
             return 'correct';
         }
+
+        public function getAllComments() {
+            $queryResult = db::getDBSingleton()->query("SELECT id, event_id, author, body, edited_by, created_at FROM comments order by created_at ASC", []);
+
+            if($queryResult->num_rows > 0) {
+                $comments = $queryResult->fetch_all(MYSQLI_ASSOC);
+                return $comments;
+            }
+        }
     }
 ?>

@@ -21,6 +21,24 @@
             }
         }
 
+        public function managerGuard() {
+            if (!isset($_SESSION['user']) || $_SESSION['user']['manager'] == 0) {
+                header("Location: landing");
+                exit();
+            } else {
+                return true;
+            }
+        }
+
+        public function moderatorGuard() {
+            if (!isset($_SESSION['user']) || $_SESSION['user']['moderator'] == 0) {
+                header("Location: landing");
+                exit();
+            } else {
+                return true;
+            }
+        }
+
         public function authenticateUser($username, $password) {
             $usersRepository = new usersRepository();
             $userAuth = $usersRepository->getUserAuth($username);

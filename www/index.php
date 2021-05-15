@@ -23,6 +23,8 @@
         include(dirname(__FILE__)."/controllers/profile.php");
     } else if (startsWith($uri, "/admin")) {
         include(dirname(__FILE__)."/controllers/admin.php");
+    } else if (startsWith($uri, "/comments")) {
+        include(dirname(__FILE__)."/controllers/comments.php");
     } else {
         include(dirname(__FILE__)."/controllers/landing.php");
     }

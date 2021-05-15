@@ -17,6 +17,12 @@
             <a class="menu-item user-name" href="/profile">{{ user.username }} ({{ user.role }})</a>
         {% endif %}
         <a class="menu-item logout" href="/logout">Logout</a>
+        {% if user.moderator %}
+        <a class="menu-item" href="/comments">Moderación</a>
+        {% endif %}
+        {% if user.manager %}
+        <a class="menu-item" href="/events">Gestión</a>
+        {% endif %}
         {% if user.super %}
         <a class="menu-item" href="/admin">Admin</a>
         {% endif %}

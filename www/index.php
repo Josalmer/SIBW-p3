@@ -9,6 +9,8 @@
 
     if(startsWith($uri, "/event/comments")) {
         include(dirname(__FILE__)."/controllers/comments.php");
+    } else if (startsWith($uri, "/events")) {
+        include(dirname(__FILE__)."/controllers/events.php");
     } else if (startsWith($uri, "/event")) {
         include(dirname(__FILE__)."/controllers/event.php");
     } else if(startsWith($uri, "/print_event")) {

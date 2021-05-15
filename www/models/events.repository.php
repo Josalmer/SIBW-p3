@@ -19,7 +19,7 @@
         }
 
         public function getAllEvents() {
-            $queryResult = db::getDBSingleton()->query("SELECT id, title, image_url FROM events", []);
+            $queryResult = db::getDBSingleton()->query("SELECT id, title, author, body, image_url FROM events", []);
 
             if($queryResult->num_rows > 0) {
                 $events = $queryResult->fetch_all(MYSQLI_ASSOC);

@@ -17,8 +17,8 @@ function setSearchListener() {
 
 function applySearch() {
     var search = document.getElementById('search-input').value.toLowerCase();
-    if (comments) { filterComments(search); }
-    if (events) { filterEvents(search); }
+    if (comments) { applyFilter(search, comments); }
+    if (events) { applyFilter(search, events); }
 }
 
 function setCommentsSearch() {
@@ -29,18 +29,14 @@ function setEventsSearch() {
     events = document.getElementsByClassName("searchable-item");
 }
 
-function filterComments(search) {
-    Array.prototype.forEach.call(comments, (comment) => {
-        let author = comment.getElementsByClassName('author-tag')[0].textContent.toLowerCase();
-        let body = comment.getElementsByClassName('body-tag')[0].textContent.toLowerCase();
+function applyFilter(search, collection) {
+    Array.prototype.forEach.call(collection, (obj) => {
+        let author = obj.getElementsByClassName('author-tag')[0].textContent.toLowerCase();
+        let body = obj.getElementsByClassName('body-tag')[0].textContent.toLowerCase();
         if (author.includes(search) || body.includes(search)) {
-            comment.style.display = '';
+            obj.style.display = '';
         } else {
-            comment.style.display = 'none';
+            obj.style.display = 'none';
         }
     });
-}
-
-function filterEvents(search) {
-
 }

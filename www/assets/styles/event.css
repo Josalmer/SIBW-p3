@@ -55,6 +55,24 @@
     color: blue;
 }
 
+/* --------- Events --------- */
+
+.table-image {
+    width: 200px;
+}
+
+.limited-body {
+    display: block;
+    max-height: 200px !important;
+    overflow-y: scroll;
+}
+
+.new-event-button {
+    font-weight: bolder;
+    background-color: rgb(223, 213, 213);;
+    margin-top: 20px;
+}
+
 /* --------- Not Found page --------- */
 
 .not-found-wrapper {

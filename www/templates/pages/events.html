@@ -22,9 +22,10 @@ Gestión del sitio
                 <td class="author-tag">{{event.author | title}}</td>
                 <td class="body-tag limited-body">{{event.body | raw }}</td>
                 <td><img src="{{event.image_url}}" class="table-image" /></td>
-                <td><span class="comment-action edit" commentid="{{comment.id}}">✏️</span><span class="comment-action delete" commentid="{{comment.id}}">🗑️</span></td>
+                <td><span class="event-actions event-edit" eventid="{{event.id}}">✏️</span><span class="event-actions event-delete" eventid="{{event.id}}">🗑️</span></td>
             </tr>
             {% endfor %}
         </table>
     </section>
+    <script src="/assets/scripts/gestion.js"></script>
 {% endblock %}

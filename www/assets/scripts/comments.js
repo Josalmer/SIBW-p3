@@ -49,7 +49,6 @@ function saveComment(event, name, comment) {
         if (this.readyState == 4 && this.status == 200) {
             var response = this.responseText;
             if (response == "correct") {
-                console.log(response);
                 addComment(name, comment);
             } else {
                 alert(response);

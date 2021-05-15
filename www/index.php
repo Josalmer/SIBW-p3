@@ -11,6 +11,8 @@
         include(dirname(__FILE__)."/controllers/comments.php");
     } else if (startsWith($uri, "/events")) {
         include(dirname(__FILE__)."/controllers/events.php");
+    } else if (startsWith($uri, "/event-form")) {
+        include(dirname(__FILE__)."/controllers/event-form.php");
     } else if (startsWith($uri, "/event")) {
         include(dirname(__FILE__)."/controllers/event.php");
     } else if(startsWith($uri, "/print_event")) {

@@ -73,6 +73,36 @@
     margin-top: 20px;
 }
 
+.event-actions-big {
+    font-size: 2em;
+}
+
+.event-actions {
+    font-size: 1.4em;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.event-delete, .event-edit {
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.event-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-form-input {
+    width: 200px;
+}
+
+.save-event-button {
+    align-self: center;
+    margin-top: 20px;
+}
+
 /* --------- Not Found page --------- */
 
 .not-found-wrapper {

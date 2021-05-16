@@ -24,15 +24,14 @@
         }
     }
 
-    // if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    //     $authenticationHelper->moderatorGuard();
-    //     $req = json_decode(stripslashes(file_get_contents("php://input")));
-    //     $comment_id = $req->id;
-    //     $response = "";
-    //     $response = $commentsRepository->deleteComment($comment_id);
-    //     echo $response;
-    //     return;
-    // }
+    if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+        $req = json_decode(stripslashes(file_get_contents("php://input")));
+        $event_id = $req->id;
+        $response = "";
+        $response = $eventsRepository->deleteEvent($event_id);
+        echo $response;
+        return;
+    }
 
     $event = $eventsRepository->getEvent($eventId);
     

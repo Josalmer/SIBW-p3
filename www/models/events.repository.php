@@ -31,7 +31,12 @@
                     $id = $event['id'];
                     $gallery = db::getDBSingleton()->query("SELECT id, image_url FROM gallery_images WHERE event_id = ? LIMIT 1", [$id]);
                     $image = $gallery->fetch_all(MYSQLI_ASSOC);
-                    $event['image_url'] = $image[0]['image_url'];
+                    $imageUrl = $image[0]['image_url'];
+                    if ($imageUrl) {
+                        $event['image_url'] = $imageUrl;
+                    } else {
+                        $event['image_url'] = "/public/event_images/playa.jpeg";
+                    }
                 }
                 
                 return $events;
@@ -55,6 +60,12 @@
             $queryResult = db::getDBSingleton()->query("UPDATE events set title = ?, author= ?, body = ?, updated_at = ? WHERE id = ?", [$title, $author, $body, $now, $eventId]);
 
             return $queryResult;
+        }
+
+        public function deleteEvent($eventId) {
+            $queryResult = db::getDBSingleton()->query("DELETE FROM events WHERE id = ?", [$eventId]);
+
+            return 'correct';
         }
     }
 ?>

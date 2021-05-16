@@ -67,5 +67,11 @@
 
             return 'correct';
         }
+
+        public function addEventImage($eventId, $imageUrl) {
+            $queryResult = db::getDBSingleton()->query("INSERT INTO gallery_images(event_id, image_url) VALUES(?, ?)", [$eventId, $imageUrl]);
+
+            return 'correct';
+        }
     }
 ?>

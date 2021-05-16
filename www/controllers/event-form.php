@@ -12,15 +12,45 @@
     $event = null;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $body = $_POST['body'];
-        $eventId = $_POST['id'];
+        $type = $_POST['type'];
 
-        if ($eventId != null) {
-            $eventsRepository->updateEvent($eventId, $title, $author, $body);
+        if ($type == 'event') {
+            $title = $_POST['title'];
+            $author = $_POST['author'];
+            $body = $_POST['body'];
+            $eventId = $_POST['id'];
+    
+            if ($eventId != null) {
+                $eventsRepository->updateEvent($eventId, $title, $author, $body);
+            } else {
+                $eventId = $eventsRepository->newEvent($title, $author, $body);
+            }
         } else {
-            $eventId = $eventsRepository->newEvent($title, $author, $body);
+            if(isset($_FILES['image'])){
+                $errors= array();
+                $eventId = $_POST['id'];
+                $file_name = $_FILES['image']['name'];
+                $file_size = $_FILES['image']['size'];
+                $file_tmp = $_FILES['image']['tmp_name'];
+                $file_type = $_FILES['image']['type'];
+                $file_ext = strtolower(end(explode('.',$_FILES['image']['name'])));
+                
+                $extensions= array("jpeg","jpg","png");
+                
+                if (in_array($file_ext,$extensions) === false){
+                    $errors[] = "Extensión no permitida, elige una imagen JPEG o PNG.";
+                }
+                
+                if ($file_size > 2097152){
+                    $errors[] = 'Tamaño del fichero demasiado grande';
+                }
+                
+                if (empty($errors)==true) {
+                    move_uploaded_file($file_tmp, "public/uploads/" . $file_name);
+                    $imageUrl = "/public/uploads/" . $file_name;
+                    $eventsRepository->addEventImage($eventId, $imageUrl);
+                }
+            }
         }
     }
 
@@ -35,5 +65,5 @@
 
     $event = $eventsRepository->getEvent($eventId);
     
-    echo $twig->render('pages/event-form.html', ['event' => $event]);
+    echo $twig->render('pages/event-form.html', ['event' => $event, 'errors' => $errors]);
 ?>

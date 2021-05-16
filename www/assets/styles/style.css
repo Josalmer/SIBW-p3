@@ -53,6 +53,17 @@ td {
     display: none;
 }
 
+.error {
+    margin: 20px;
+    width: 40%;
+    padding: 20px;
+    background-color: rgb(241, 87, 87);
+    font-weight: bolder;
+
+    border-radius: 10px;
+}
+
+
 /* --------- Header --------- */
 
 header {

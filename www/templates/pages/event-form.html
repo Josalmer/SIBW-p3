@@ -14,10 +14,26 @@ Formulario de evento
             <span class="event-form-input">
                 Autor: <input type="text" name="author" value="{{event.author}}" />
             </span>
+            <span class="event-form-input">
+                Tags:
+                <div class="edit-tags-wrapper">
+                    <span id="new-tag-button" class="tag">Añadir</span>
+                    {% for tag in event.tags %}
+                        <span class="tag tag-button">{{ tag.tag }}<span class="tag-delete" tagId="{{tag.id}}">🗑️</span></span>
+                    {% endfor %}
+                </div>
+            </span>
             <textarea id="event-form-body" name="body" rows="16" body="{{ event.body }}" eventid="{{ event.id }}"></textarea>
             <span>Creado el: {{ event.created_at | date("d/m/Y") }}, Última actualización: {{ event.updated_at | date("d/m/Y") }}</span>
             <input class="save-event-button" type="submit" value="Guardar evento" />
         </form>
+        <h2>Galería de fotos del evento</h2>
+        <div class="gallery-wrapper edit-gallery">
+            <img id="new-event-image" class="gallery-image" src="/assets/images/image-holder.jpg" />
+            {% for gallery_image in event.gallery %}
+            <img class="gallery-image" src="{{gallery_image.image_url}}" />
+            {% endfor %}
+        </div>
     </section>
     <script src="/assets/scripts/gestion.js"></script>
 {% endblock %}

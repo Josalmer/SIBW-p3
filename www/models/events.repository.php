@@ -13,6 +13,9 @@
                     $gallery = db::getDBSingleton()->query("SELECT id, image_url FROM gallery_images WHERE event_id = ?", [$evID]);
                     $event['gallery'] = $gallery->fetch_all(MYSQLI_ASSOC);
 
+                    $tags = db::getDBSingleton()->query("SELECT id, tag FROM tags WHERE event_id = ?", [$evID]);
+                    $event['tags'] = $tags->fetch_all(MYSQLI_ASSOC);
+
                     return $event;
                 }
             }

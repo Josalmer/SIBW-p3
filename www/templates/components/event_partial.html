@@ -11,5 +11,12 @@
         <h4>{{ event.updated_at | date("d/m/Y") }}</h4>
     </div>
     {{ event.body | raw }}
+    {% if event.tags %}
+        <div class="tags-wrapper">
+            {% for tag in event.tags %}
+                <span class="tag">{{ tag.tag }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
 </article>
 <script src="/assets/scripts/gestion.js"></script>

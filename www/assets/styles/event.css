@@ -55,6 +55,41 @@
     color: blue;
 }
 
+.tags-wrapper {
+    margin-top: 20px;
+    display: flex;
+}
+
+.tag {
+    background-color: rgb(223, 213, 213);
+    margin-right: 15px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    padding: 8px;
+}
+
+.tag-button {
+    min-width: 100px;
+    justify-content: space-between;
+    display: flex;
+    text-align: center;
+}
+
+.edit-tags-wrapper {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.tag-delete {
+    cursor: pointer;
+}
+
+#new-tag-button {
+    background-color: rgb(187, 216, 144);
+    cursor: pointer;
+}
+
 /* --------- Events --------- */
 
 .table-image {
@@ -69,7 +104,7 @@
 
 .new-event-button {
     font-weight: bolder;
-    background-color: rgb(223, 213, 213);;
+    background-color: rgb(223, 213, 213);
     margin-top: 20px;
 }
 
@@ -126,6 +161,14 @@
     margin-top: 1em;
     min-width: 180px;
     width: 30%;
+}
+
+.edit-gallery {
+    margin-bottom: 20px;
+}
+
+#new-event-image {
+    cursor: pointer;
 }
 
 /* --------- Responsive Media Query --------- */

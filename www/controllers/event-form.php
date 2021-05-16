@@ -6,19 +6,33 @@
     include(dirname(__FILE__)."/../models/events.repository.php");
     $eventsRepository = new eventsRepository();
 
-    // if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-    //     $req = json_decode(stripslashes(file_get_contents("php://input")));
-    //     $body = $req->body;
-    //     $commentId = $req->id;
-    //     $response = $commentsRepository->updateComment($commentId, $body);
-    //     echo $response;
-    //     return;
-    // }
-
     $params = substr($uri, strlen("/event-form/"));
 
     $eventId = intval($params);
     $event = null;
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $body = $_POST['body'];
+        $eventId = $_POST['id'];
+
+        if ($eventId != null) {
+            $eventsRepository->updateEvent($eventId, $title, $author, $body);
+        } else {
+            $eventId = $eventsRepository->newEvent($title, $author, $body);
+        }
+    }
+
+    // if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    //     $authenticationHelper->moderatorGuard();
+    //     $req = json_decode(stripslashes(file_get_contents("php://input")));
+    //     $comment_id = $req->id;
+    //     $response = "";
+    //     $response = $commentsRepository->deleteComment($comment_id);
+    //     echo $response;
+    //     return;
+    // }
 
     $event = $eventsRepository->getEvent($eventId);
     

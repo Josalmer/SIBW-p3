@@ -9,11 +9,12 @@ Formulario de evento
 
         <form class="event-form" action="event-form.php" method="post">
             <span class="event-form-input">
-                Título de evento: <input type="text" name="username" value="{{event.title}}" />
+                Título de evento: <input type="text" name="title" value="{{event.title}}" />
             </span>
             <span class="event-form-input">
                 Autor: <input type="text" name="author" value="{{event.author}}" />
             </span>
+            <input class="hidden-field" type="text" name="id" value="{{event.id}}" />
             {% if event %}
                 <span class="event-form-input">
                     Tags:

@@ -37,5 +37,24 @@
                 return $events;
             }
         }
+
+        public function newEvent($title, $author, $body) {
+            $date = new DateTime();
+            $now = $date->format('Y-m-d H:i:s');
+            $queryResult = db::getDBSingleton()->query("INSERT INTO events(title, author, body, created_at, updated_at) VALUES(?, ?, ?, ?, ?)", [$title, $author, $body, $now, $now]);
+            $eventQuery = db::getDBSingleton()->query("SELECT id FROM events WHERE title = ?", [$title]);
+            $event = mysqli_fetch_assoc($eventQuery);
+            $eventId = $event['id'];
+
+            return $eventId;
+        }
+
+        public function updateEvent($eventId, $title, $author, $body) {
+            $date = new DateTime();
+            $now = $date->format('Y-m-d H:i:s');
+            $queryResult = db::getDBSingleton()->query("UPDATE events set title = ?, author= ?, body = ?, updated_at = ? WHERE id = ?", [$title, $author, $body, $now, $eventId]);
+
+            return $queryResult;
+        }
     }
 ?>

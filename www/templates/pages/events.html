@@ -13,17 +13,23 @@ Gestión del sitio
                 <td>Título</td>
                 <td>Autor</td>
                 <td>Descripción</td>
+                <td>Etiquetas</td>
                 <td>Foto principal</td>
                 <td>Acciones</td>
             </tr>
             {% for event in events %}
-            <tr id="{{event.id}}" class="searchable-item">
-                <td>{{event.title}}</td>
-                <td class="author-tag">{{event.author | title}}</td>
-                <td class="body-tag limited-body">{{event.body | raw }}</td>
-                <td><img src="{{event.image_url}}" class="table-image" /></td>
-                <td><span class="event-actions event-edit" eventid="{{event.id}}">✏️</span><span class="event-actions event-delete" eventid="{{event.id}}">🗑️</span></td>
-            </tr>
+                <tr id="{{event.id}}" class="searchable-item">
+                    <td>{{event.title}}</td>
+                    <td class="author-tag">{{event.author | title}}</td>
+                    <td class="body-tag limited-body">{{event.body | raw }}</td>
+                    <td>
+                        {% for tag in event.tags %}
+                            {{tag['tag']}}
+                        {% endfor %}
+                    </td>
+                    <td><img src="{{event.image_url}}" class="table-image" /></td>
+                    <td><span class="event-actions event-edit" eventid="{{event.id}}">✏️</span><span class="event-actions event-delete" eventid="{{event.id}}">🗑️</span></td>
+                </tr>
             {% endfor %}
         </table>
     </section>

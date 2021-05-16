@@ -37,6 +37,8 @@
                     } else {
                         $event['image_url'] = "/public/event_images/playa.jpeg";
                     }
+                    $tags = db::getDBSingleton()->query("SELECT id, tag FROM tags WHERE event_id = ?", [$id]);
+                    $event['tags'] = $tags->fetch_all(MYSQLI_ASSOC);
                 }
                 
                 return $events;
@@ -64,6 +66,8 @@
 
         public function deleteEvent($eventId) {
             $queryResult = db::getDBSingleton()->query("DELETE FROM events WHERE id = ?", [$eventId]);
+            $queryResult = db::getDBSingleton()->query("DELETE FROM gallery_images WHERE event_id = ?", [$eventId]);
+            $queryResult = db::getDBSingleton()->query("DELETE FROM tags WHERE event_id = ?", [$eventId]);
 
             return 'correct';
         }

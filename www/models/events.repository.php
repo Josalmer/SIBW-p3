@@ -73,5 +73,11 @@
 
             return 'correct';
         }
+
+        public function deleteEventImage($eventId, $imageUrl) {
+            $queryResult = db::getDBSingleton()->query("DELETE FROM gallery_images WHERE event_id = ? AND image_url = ?", [$eventId, $imageUrl]);
+
+            return 'correct';
+        }
     }
 ?>

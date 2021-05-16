@@ -44,7 +44,10 @@ Formulario de evento
             </form>
             <div class="edit-gallery">
                 {% for gallery_image in event.gallery %}
-                <img class="gallery-image-edit" src="{{gallery_image.image_url}}" />
+                <span id="{{gallery_image.image_url}}" class="image-edit-wrapper">
+                    <span class="image-delete" eventId="{{event.id}}" imageUrl="{{gallery_image.image_url}}">🗑️</span>
+                    <img class="gallery-image-edit" src="{{gallery_image.image_url}}" />
+                </span>
                 {% endfor %}
             </div>
         {% else %}

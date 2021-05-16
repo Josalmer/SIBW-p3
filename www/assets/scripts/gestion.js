@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => setGestionListeners());
 function setGestionListeners() {
     setEditEventButton();
     setDeleteEventButton();
+    setDeleteImageButton();
 
     var eventBody = document.getElementById("event-form-body");
     if (eventBody) { eventBody.value = eventBody.getAttribute('body'); }
@@ -49,6 +50,36 @@ function deleteEvent(eventId) {
     };
     let data = {
         id: eventId
+    };
+    let jsonData = JSON.stringify(data);
+    xhttp.send(jsonData);
+}
+
+function setDeleteImageButton() {
+    var deleteImageButtons = document.getElementsByClassName("image-delete");
+    Array.prototype.forEach.call(deleteImageButtons, (button) => {
+        button.addEventListener("click", (event) => deleteImage(event.target.getAttribute('eventId'), event.target.getAttribute('imageUrl')));
+    });
+}
+
+function deleteImage(eventId, imageUrl) {
+    xhttp.open("DELETE", "/events-extras.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            var response = this.responseText;
+            if (response == "correct") {
+                document.getElementById(imageUrl).remove();
+            } else {
+                alert(response);
+            }
+        }
+    };
+    let data = {
+        type: 'image',
+        eventId: eventId,
+        imageUrl: imageUrl
     };
     let jsonData = JSON.stringify(data);
     xhttp.send(jsonData);

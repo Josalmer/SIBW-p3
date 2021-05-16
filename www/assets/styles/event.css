@@ -102,10 +102,12 @@
     overflow-y: scroll;
 }
 
-.new-event-button {
+#new-event-button {
     font-weight: bolder;
-    background-color: rgb(223, 213, 213);
+    border: none;
+    background-color: rgb(187, 216, 144);
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .event-actions-big {
@@ -138,6 +140,13 @@
     margin-top: 20px;
 }
 
+.new-event-advice {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.7em;
+}
+
 /* --------- Not Found page --------- */
 
 .not-found-wrapper {
@@ -164,7 +173,18 @@
 }
 
 .edit-gallery {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     margin-bottom: 20px;
+}
+
+.gallery-image-edit {
+    margin-top: 1em;
+    margin-right: 1em;
+    min-width: 180px;
+    width: 30%;
 }
 
 #new-event-image {

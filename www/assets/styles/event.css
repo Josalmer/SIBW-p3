@@ -85,7 +85,7 @@
     cursor: pointer;
 }
 
-#new-tag-button {
+.new-tag-button {
     background-color: rgb(187, 216, 144);
     cursor: pointer;
 }

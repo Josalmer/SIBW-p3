@@ -4,6 +4,7 @@ function setGestionListeners() {
     setEditEventButton();
     setDeleteEventButton();
     setDeleteImageButton();
+    setDeleteTagButton();
 
     var eventBody = document.getElementById("event-form-body");
     if (eventBody) { eventBody.value = eventBody.getAttribute('body'); }
@@ -63,7 +64,7 @@ function setDeleteImageButton() {
 }
 
 function deleteImage(eventId, imageUrl) {
-    xhttp.open("DELETE", "/events-extras.php", true);
+    xhttp.open("DELETE", "/event-extras.php", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -80,6 +81,36 @@ function deleteImage(eventId, imageUrl) {
         type: 'image',
         eventId: eventId,
         imageUrl: imageUrl
+    };
+    let jsonData = JSON.stringify(data);
+    xhttp.send(jsonData);
+}
+
+function setDeleteTagButton() {
+    var deleteTagButtons = document.getElementsByClassName("tag-delete");
+    Array.prototype.forEach.call(deleteTagButtons, (button) => {
+        button.addEventListener("click", (event) => deleteTag(event.target.getAttribute('eventId'), event.target.getAttribute('tagTag')));
+    });
+}
+
+function deleteTag(eventId, tag) {
+    xhttp.open("DELETE", "/event-extras.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            var response = this.responseText;
+            if (response == "correct") {
+                document.getElementById(tag).remove();
+            } else {
+                alert(response);
+            }
+        }
+    };
+    let data = {
+        type: 'tag',
+        eventId: eventId,
+        tag: tag
     };
     let jsonData = JSON.stringify(data);
     xhttp.send(jsonData);

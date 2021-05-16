@@ -67,17 +67,5 @@
 
             return 'correct';
         }
-
-        public function addEventImage($eventId, $imageUrl) {
-            $queryResult = db::getDBSingleton()->query("INSERT INTO gallery_images(event_id, image_url) VALUES(?, ?)", [$eventId, $imageUrl]);
-
-            return 'correct';
-        }
-
-        public function deleteEventImage($eventId, $imageUrl) {
-            $queryResult = db::getDBSingleton()->query("DELETE FROM gallery_images WHERE event_id = ? AND image_url = ?", [$eventId, $imageUrl]);
-
-            return 'correct';
-        }
     }
 ?>

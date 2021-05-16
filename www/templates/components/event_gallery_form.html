@@ -1,0 +1,18 @@
+<h2>Galería de fotos del evento</h2>
+{% for e in errors %}
+    <h4 class="error">{{ e }}</h4>
+{% endfor %}
+<form action="event-form.php" method="post" enctype="multipart/form-data">
+    <input class="hidden-field" type="text" name="id" value="{{event.id}}" />
+    <input class="hidden-field" type="text" name="type" value="image" />
+    Imagen a subir: <input type="file" name="image" /><br>
+    <input type="submit" value="Añadir imagen" />
+</form>
+<div class="edit-gallery">
+    {% for gallery_image in event.gallery %}
+    <span id="{{gallery_image.image_url}}" class="image-edit-wrapper">
+        <span class="image-delete" eventId="{{event.id}}" imageUrl="{{gallery_image.image_url}}">🗑️</span>
+        <img class="gallery-image-edit" src="{{gallery_image.image_url}}" />
+    </span>
+    {% endfor %}
+</div>

@@ -3,8 +3,8 @@
     $authenticationHelper = new authenticationHelper();
     $authenticationHelper->managerGuard();
 
-    include(dirname(__FILE__)."/../models/events.repository.php");
-    $eventsRepository = new eventsRepository();
+    include(dirname(__FILE__)."/../models/event_extras.repository.php");
+    $eventExtrasRepository = new eventExtrasRepository();
 
     if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         $req = json_decode(stripslashes(file_get_contents("php://input")));
@@ -13,7 +13,11 @@
         if ($type == 'image') {
             $eventId = $req->eventId;
             $imageUrl = $req->imageUrl;
-            $response = $eventsRepository->deleteEventImage($eventId, $imageUrl);
+            $response = $eventExtrasRepository->deleteEventImage($eventId, $imageUrl);
+        } else if ($type == 'tag') {
+            $eventId = $req->eventId;
+            $tag = $req->tag;
+            $response = $eventExtrasRepository->deleteEventTag($eventId, $tag);
         }
         echo $response;
     }

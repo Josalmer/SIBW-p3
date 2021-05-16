@@ -6,6 +6,9 @@
     include(dirname(__FILE__)."/../models/events.repository.php");
     $eventsRepository = new eventsRepository();
 
+    include(dirname(__FILE__)."/../models/event_extras.repository.php");
+    $eventExtrasRepository = new eventExtrasRepository();
+
     $params = substr($uri, strlen("/event-form/"));
 
     $eventId = intval($params);
@@ -25,7 +28,7 @@
             } else {
                 $eventId = $eventsRepository->newEvent($title, $author, $body);
             }
-        } else {
+        } else if ($type == 'image') {
             if(isset($_FILES['image'])){
                 $errors= array();
                 $eventId = $_POST['id'];
@@ -48,9 +51,13 @@
                 if (empty($errors)==true) {
                     move_uploaded_file($file_tmp, "public/uploads/" . $file_name);
                     $imageUrl = "/public/uploads/" . $file_name;
-                    $eventsRepository->addEventImage($eventId, $imageUrl);
+                    $eventExtrasRepository->addEventImage($eventId, $imageUrl);
                 }
             }
+        } else  if ($type == 'tag') {
+            $eventId = $_POST['id'];
+            $tag = $_POST['tag'];
+            $eventExtrasRepository->addEventTag($eventId, $tag);
         }
     }
 
@@ -65,5 +72,5 @@
 
     $event = $eventsRepository->getEvent($eventId);
     
-    echo $twig->render('pages/event-form.html', ['event' => $event, 'errors' => $errors]);
+    echo $twig->render('pages/event_form.html', ['event' => $event, 'errors' => $errors]);
 ?>

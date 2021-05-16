@@ -1,0 +1,14 @@
+<h2>Tags</h2>
+<form class="event-form" action="event-form.php" method="post">
+    <span class="event-form-input">
+        <input type="text" name="tag" />
+    </span>
+    <input class="hidden-field" type="text" name="id" value="{{event.id}}" />
+    <input class="hidden-field" type="text" name="type" value="tag" />
+    <input type="submit" value="Añadir etiqueta" />
+    <div class="edit-tags-wrapper">
+        {% for tag in event.tags %}
+            <span id="{{tag.tag}}" class="tag tag-button">{{ tag.tag }}<span class="tag-delete" eventId="{{event.id}}" tagTag="{{tag.tag}}">🗑️</span></span>
+        {% endfor %}
+    </div>
+</form>

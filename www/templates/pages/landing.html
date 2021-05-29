@@ -4,7 +4,7 @@ Portada
 {% endblock %}
 {% block main %}
     <section class="events-wrapper">
-        {{ include('components/search-bar.html') }}
+        {{ include('components/search_bar.html') }}
         {% for event in events %}
         <a class="event" href="/event/{{event.id}}">
             <img src="{{event.image_url}}" class="event-logo" />

@@ -3,9 +3,20 @@
 </figure>
 <article>
     <div class="main-data">
-    <h2>{{ event.title | title }}</h2>
-    <h3>{{ event.author | title }}</h3>
-    <h4>{{ event.updated_at | date("d/m/Y") }}</h4>
+        <h2>{{ event.title | title }}</h2>
+        {% if user.manager %}
+            <span class="event-actions-big"><span class="event-edit" eventid="{{event.id}}">✏️</span><span class="event-delete" eventid="{{event.id}}">🗑️</span></span>
+        {% endif %}
+        <h3>{{ event.author | title }}</h3>
+        <h4>{{ event.updated_at | date("d/m/Y") }}</h4>
     </div>
     {{ event.body | raw }}
+    {% if event.tags %}
+        <div class="tags-wrapper">
+            {% for tag in event.tags %}
+                <span class="tag">{{ tag.tag }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
 </article>
+<script src="/assets/scripts/gestion.js"></script>

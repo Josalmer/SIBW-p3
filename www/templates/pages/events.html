@@ -1,0 +1,37 @@
+{% extends 'page_base.html' %}
+{% block title %}
+Gestión del sitio
+{% endblock %}
+{% block main %}
+    <section id="events-gestion" class="admin-section">
+        <h1>Gestión del sitio</h1>
+        <h2>Eventos</h2>
+        {{ include('components/navbar.html') }}
+        <input id="new-event-button" type="button" value="Crear nuevo evento" />
+        <table class="events-table">
+            <tr>
+                <td>Título</td>
+                <td>Autor</td>
+                <td>Descripción</td>
+                <td>Etiquetas</td>
+                <td>Foto principal</td>
+                <td>Acciones</td>
+            </tr>
+            {% for event in events %}
+                <tr id="{{event.id}}" class="searchable-item">
+                    <td>{{event.title}}</td>
+                    <td class="author-tag">{{event.author | title}}</td>
+                    <td class="body-tag limited-body">{{event.body | raw }}</td>
+                    <td>
+                        {% for tag in event.tags %}
+                            {{tag['tag']}}
+                        {% endfor %}
+                    </td>
+                    <td><img src="{{event.image_url}}" class="table-image" /></td>
+                    <td><span class="event-actions event-edit" eventid="{{event.id}}">✏️</span><span class="event-actions event-delete" eventid="{{event.id}}">🗑️</span></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <script src="/assets/scripts/gestion.js"></script>
+{% endblock %}

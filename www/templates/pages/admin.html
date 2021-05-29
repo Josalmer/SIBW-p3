@@ -1,0 +1,30 @@
+{% extends 'page_base.html' %}
+{% block title %}
+Administración de usuarios
+{% endblock %}
+{% block main %}
+    <section class="admin-section">
+        <h1 class="admin-title">Administración de usuarios</h1>
+        <table class="users-table">
+            <tr>
+                <td>Nombre de usuario</td>
+                <td>Email</td>
+                <td>Año de nacimiento</td>
+                <td>Moderador</td>
+                <td>Gestor</td>
+                <td>Admin</td>
+            </tr>
+            {% for user_i in users %}
+            <tr>
+                <td>{{user_i.username}}</td>
+                <td>{{user_i.email}}</td>
+                <td>{{user_i.birth_year}}</td>
+                <td><input class="moderator-checkbox" type="checkbox" name="{{user_i.username}}" value="{{user_i.moderator}}"></td>
+                <td><input class="manager-checkbox" type="checkbox" name="{{user_i.username}}" value="{{user_i.manager}}"></td>
+                <td><input class="admin-checkbox" type="checkbox" name="{{user_i.username}}" value="{{user_i.super}}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <script src="/assets/scripts/admin.js"></script>
+{% endblock %}

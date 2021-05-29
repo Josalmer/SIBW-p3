@@ -2,6 +2,9 @@
 
 @import "landing.css";
 @import "event.css";
+@import "authentication.css";
+@import "admin.css";
+@import "comment.css";
 
 html * {
     font-family: fantasy;
@@ -30,6 +33,36 @@ body {
     border-radius: 5px;
     border: transparent;
 }
+
+table, th, td {
+    border: 1px solid rgb(223, 213, 213);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.hidden-field {
+    display: none;
+}
+
+.error {
+    margin: 20px;
+    width: 40%;
+    padding: 20px;
+    background-color: rgb(241, 87, 87);
+    font-weight: bolder;
+
+    border-radius: 10px;
+}
+
 
 /* --------- Header --------- */
 
@@ -76,6 +109,15 @@ nav .menu-item {
     margin: 0 10px;
     font-weight: bold;
     font-size: 1.2em;
+}
+
+.user-name {
+    font-style: italic;
+    color: blue;
+}
+
+.logout {
+    color: red;
 }
 
 /* --------- Main --------- */
@@ -138,6 +180,23 @@ footer {
 
 .print header {
     justify-content: flex-end;
+}
+
+/* --------- SearchBar --------- */
+
+.searchbar {
+    width: 95%;
+    margin-top: 20px;
+}
+
+.search-input {
+    width: 92%;
+}
+
+.lupa {
+    margin-left: 10px;
+    font-size: 2em;
+    cursor: pointer;
 }
 
 /* --------- Responsive Media Query --------- */

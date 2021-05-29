@@ -4,10 +4,18 @@
     <div id="comments-list">
         {% if event.comments %}
             {% for comment in event.comments %}
-            <element class="comment-wrapper">
+            <element id="{{comment.id}}" class="comment-wrapper">
                 <div class="comment-details">
-                    <span>{{comment.author | title }}</span>
+                    {% if comment.edited_by %}
+                        <span class="tooltip">⚠️
+                            <span class="tooltiptext">Comentario editador por el moderador {{comment.edited_by}}</span>
+                        </span>
+                    {% endif %}
+                    <span>{{ comment.author | title }}</span>
                     <span>{{ comment.created_at | date("d/m/Y") }}</span>
+                    {% if user.moderator %}
+                        <span class="comment-action"><span class="edit" commentid="{{comment.id}}">✏️</span><span class="delete" commentid="{{comment.id}}">🗑️</span></span>
+                    {% endif %}
                 </div>
                 <p>{{ comment.body }}</p>
             </element>
@@ -16,18 +24,18 @@
             <p class="no-comments-msg">Aún no hay comentarios en este evento, animese a ser el primero</p>
         {% endif %}
     </div>
-    <form class="comment-form">
-        <input type="text" name="name" placeholder="Escriba su nombre aquí">
-        <input type="text" name="email" placeholder="Escriba su email aquí">
-        <textarea name="comment" name="comment" rows="10" placeholder="Escriba su comentario aquí"></textarea>
-        <button id="send-comment" class="button" type="button">Enviar comentario</button>
-    </form>
+    {% if user.role != "anonimo" %}
+        <form class="comment-form">
+            <textarea name="comment" event="{{event.id}}" username="{{user.username}}" role="{{user.role}}" rows="10" placeholder="Escriba su comentario aquí"></textarea>
+            <button id="send-comment" class="button" type="button">Enviar comentario</button>
+        </form>
+    {% endif %}
 </aside>
 <div id="warning-modal">
     <div class="modal-content">
-        <p>Para enviar un comentario, rellena el tu nombre, un email válido y tu comentario</p>
+        <p>Rellene el comentario antes de enviarlo.</p>
         <span class="close">&times;</span>
     </div>
 </div>
 <script src="/assets/scripts/comments.js"></script>
-  
+<script src="/assets/scripts/moderation.js"></script>

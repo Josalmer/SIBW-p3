@@ -1,0 +1,14 @@
+<h2>Formulario de evento</h2>
+<form class="event-form" action="event-form.php" method="post">
+    <span class="event-form-input">
+        Título de evento: <input type="text" name="title" value="{{event.title}}" />
+    </span>
+    <span class="event-form-input">
+        Autor: <input type="text" name="author" value="{{event.author}}" />
+    </span>
+    <input class="hidden-field" type="text" name="id" value="{{event.id}}" />
+    <input class="hidden-field" type="text" name="type" value="event" />
+    <textarea id="event-form-body" name="body" rows="16" body="{{ event.body }}" eventid="{{ event.id }}"></textarea>
+    <span>Creado el: {{ event.created_at | date("d/m/Y") }}, Última actualización: {{ event.updated_at | date("d/m/Y") }}</span>
+    <input class="save-event-button" type="submit" value="Guardar evento" />
+</form>

@@ -1,0 +1,32 @@
+{% extends 'page_base.html' %}
+{% block title %}
+Moderación del sitio
+{% endblock %}
+{% block main %}
+    <section class="admin-section">
+        <h1>Moderación del sitio</h1>
+        <h2>Comentarios</h2>
+        {{ include('components/navbar.html') }}
+        <table class="comments-table">
+            <tr>
+                <td>Evento</td>
+                <td>Autor</td>
+                <td>Comentario</td>
+                <td>Fecha publicación</td>
+                <td>Editada por moderador</td>
+                <td>Acciones</td>
+            </tr>
+            {% for comment in comments %}
+            <tr id="{{comment.id}}" class="searchable-item">
+                <td>{{comment.event_id}}</td>
+                <td class="author-tag">{{comment.author | title}}</td>
+                <td class="body-tag">{{comment.body}}</td>
+                <td>{{comment.created_at | date("d/m/Y")}}</td>
+                <td>{{comment.edited_by}}</td>
+                <td><span class="comment-action edit" commentid="{{comment.id}}">✏️</span><span class="comment-action delete" commentid="{{comment.id}}">🗑️</span></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <script src="/assets/scripts/moderation.js"></script>
+{% endblock %}

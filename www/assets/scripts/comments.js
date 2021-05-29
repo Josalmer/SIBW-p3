@@ -1,12 +1,15 @@
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-document.addEventListener("DOMContentLoaded", () => setListeners());
+document.addEventListener("DOMContentLoaded", () => setCommentsListeners());
 
-function setListeners() {
+function setCommentsListeners() {
     document.getElementById("display-comments").addEventListener("click", () => showComments());
     document.getElementById("hide-comments").addEventListener("click", () => hideComments());
-    document.getElementById("send-comment").addEventListener("click", () => sendComment());
-    document.getElementsByName("comment")[0].addEventListener("input", () => adultsFilter());
+    let newCommentForm = document.getElementById("send-comment");
+    if (newCommentForm) {
+        newCommentForm.addEventListener("click", () => sendComment());
+        document.getElementsByName("comment")[0].addEventListener("input", () => adultsFilter());
+    }
     document.getElementsByClassName("close")[0].addEventListener("click", () => closeWarningModal());
     window.addEventListener("click", event => closeWarningModal(event.target));
 }
@@ -26,19 +29,43 @@ function hideComments() {
 }
 
 function sendComment() {
-    var name = document.getElementsByName("name")[0].value;
-    var email = document.getElementsByName("email")[0].value;
-    var comment = document.getElementsByName("comment")[0].value;
-    if (name !== '' && validEmail(email) && comment !== '') {
-        addComment(name, email, comment);
-        clearForm();
+    var commentForm = document.getElementsByName("comment")[0];
+    var name = commentForm.getAttribute('username');
+    var role = commentForm.getAttribute('role');
+    var event = commentForm.getAttribute('event');
+    var comment = commentForm.value;
+    if (role !== 'anonimo' && comment !== '') {
+        saveComment(event, name, comment);
+        clearForm(commentForm);
     } else {
         document.getElementById("warning-modal").style.display = "block";
     }
 }
 
-function addComment(name, email, comment) {
-    var now = new Date().toLocaleString().slice(0, 17);
+function saveComment(event, name, comment) {
+    xhttp.open("POST", "comments.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+            if (response == "correct") {
+                addComment(name, comment);
+            } else {
+                alert(response);
+            }
+        }
+    };
+    let data = {
+        event_id: event,
+        author: name,
+        body: comment
+    };
+    let jsonData = JSON.stringify(data);
+    xhttp.send(jsonData);
+}
+
+function addComment(name, comment) {
+    var now = new Date().toLocaleString().slice(0, 10);
     var commentDetails = document.createElement("div");
     commentDetails.innerHTML = `<span>${name}</span><span>${now}</span>`;
     commentDetails.className = "comment-details";
@@ -53,10 +80,8 @@ function addComment(name, email, comment) {
     commentsList.appendChild(newComment);
 }
 
-function clearForm() {
-    document.getElementsByName("name")[0].value = '';
-    document.getElementsByName("email")[0].value = '';
-    document.getElementsByName("comment")[0].value = '';
+function clearForm(commentForm) {
+    commentForm.value = '';
 }
 
 function closeWarningModal(target) {

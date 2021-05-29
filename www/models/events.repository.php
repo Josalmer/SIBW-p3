@@ -2,7 +2,11 @@
     class eventsRepository {
         public function getEvent($evID) {
             if (is_numeric($evID)) {
-                $queryResult = db::getDBSingleton()->query("SELECT id, title, author, body, created_at, updated_at FROM events WHERE id = ?", [$evID]);
+                if (!isset($_SESSION['user']) || $_SESSION['user']['manager'] == 0) {
+                    $queryResult = db::getDBSingleton()->query("SELECT id, title, author, body, created_at, updated_at FROM events WHERE id = ? AND published = 1", [$evID]);
+                } else {
+                    $queryResult = db::getDBSingleton()->query("SELECT id, title, author, body, created_at, updated_at FROM events WHERE id = ?", [$evID]);
+                }
 
                 if($queryResult->num_rows > 0) {
                     $event = mysqli_fetch_assoc($queryResult);
@@ -23,7 +27,11 @@
         }
 
         public function getAllEvents() {
-            $queryResult = db::getDBSingleton()->query("SELECT id, title, author, body FROM events", []);
+            if (!isset($_SESSION['user']) || $_SESSION['user']['manager'] == 0) {
+                $queryResult = db::getDBSingleton()->query("SELECT id, title, author, body FROM events WHERE published = 1", []);
+            } else {
+                $queryResult = db::getDBSingleton()->query("SELECT id, title, author, body, published FROM events", []);
+            }
 
             if($queryResult->num_rows > 0) {
                 $events = $queryResult->fetch_all(MYSQLI_ASSOC);
@@ -62,6 +70,14 @@
             $queryResult = db::getDBSingleton()->query("UPDATE events set title = ?, author= ?, body = ?, updated_at = ? WHERE id = ?", [$title, $author, $body, $now, $eventId]);
 
             return $queryResult;
+        }
+
+        public function togglePublished($eventId, $newStatus) {
+            $date = new DateTime();
+            $now = $date->format('Y-m-d H:i:s');
+            $queryResult = db::getDBSingleton()->query("UPDATE events set published = ?, updated_at = ? WHERE id = ?", [$newStatus, $now, $eventId]);
+
+            return 'correct';
         }
 
         public function deleteEvent($eventId) {

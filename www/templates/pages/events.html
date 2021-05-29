@@ -12,6 +12,7 @@ Gestión del sitio
             <tr>
                 <td>Título</td>
                 <td>Autor</td>
+                <td>Publicado</td>
                 <td>Descripción</td>
                 <td>Etiquetas</td>
                 <td>Foto principal</td>
@@ -21,6 +22,13 @@ Gestión del sitio
                 <tr id="{{event.id}}" class="searchable-item">
                     <td>{{event.title}}</td>
                     <td class="author-tag">{{event.author | title}}</td>
+                    <td class="published-icon">
+                        {% if event.published %}
+                            ✅
+                        {% else %}
+                            ❌
+                        {% endif %}
+                    </td>
                     <td class="body-tag limited-body">{{event.body | raw }}</td>
                     <td>
                         {% for tag in event.tags %}
@@ -28,7 +36,17 @@ Gestión del sitio
                         {% endfor %}
                     </td>
                     <td><img src="{{event.image_url}}" class="table-image" /></td>
-                    <td><span class="event-actions event-edit" eventid="{{event.id}}">✏️</span><span class="event-actions event-delete" eventid="{{event.id}}">🗑️</span></td>
+                    <td>
+                        <span class="event-actions event-publish" eventid="{{event.id}}" published="{{event.published}}">
+                            {% if event.published %}
+                                ❌
+                            {% else %}
+                                ✅
+                            {% endif %}
+                        </span>
+                        <span class="event-actions event-edit" eventid="{{event.id}}">✏️</span>
+                        <span class="event-actions event-delete" eventid="{{event.id}}">🗑️</span>
+                    </td>
                 </tr>
             {% endfor %}
         </table>

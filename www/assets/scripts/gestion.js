@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => setGestionListeners());
 function setGestionListeners() {
     setEditEventButton();
     setDeleteEventButton();
+    setPublishEventButton();
     setDeleteImageButton();
     setDeleteTagButton();
 
@@ -22,6 +23,30 @@ function setEditEventButton() {
 
 function editEvent(eventId) {
     window.location.replace('/event-form/' + eventId);
+}
+
+function setPublishEventButton() {
+    var publishButtons = document.getElementsByClassName("event-publish");
+    Array.prototype.forEach.call(publishButtons, (button) => {
+        button.addEventListener("click", (event) => togglePublished(event.target.getAttribute('eventid'), event.target.getAttribute('published')));
+    });
+}
+
+function togglePublished(eventId, publishedStatus) {
+    newStatus = !!parseInt(publishedStatus) ? 0 : 1;
+    xhttp.open("PATCH", "/event-form.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            window.location.reload();
+        }
+    };
+    let data = {
+        id: eventId,
+        status: newStatus
+    };
+    let jsonData = JSON.stringify(data);
+    xhttp.send(jsonData);
 }
 
 function setDeleteEventButton() {

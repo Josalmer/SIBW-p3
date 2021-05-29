@@ -15,6 +15,7 @@
     $event = null;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        var_dump($_POST);
         $type = $_POST['type'];
 
         if ($type == 'event') {
@@ -54,11 +55,19 @@
                     $eventExtrasRepository->addEventImage($eventId, $imageUrl);
                 }
             }
-        } else  if ($type == 'tag') {
+        } else if ($type == 'tag') {
             $eventId = $_POST['id'];
             $tag = $_POST['tag'];
             $eventExtrasRepository->addEventTag($eventId, $tag);
         }
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+        $req = json_decode(stripslashes(file_get_contents("php://input")));
+        $eventId = $req->id;
+        $newStatus = $req->status;
+        $response = $eventsRepository->togglePublished($eventId, $newStatus);
+        return $response;
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {

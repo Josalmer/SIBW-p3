@@ -120,7 +120,7 @@
     cursor: pointer;
 }
 
-.event-delete, .event-edit {
+.event-delete, .event-edit, .event-publish {
     margin-left: 25px;
     cursor: pointer;
 }
@@ -153,6 +153,10 @@
     display: flex;
     justify-content: center;
     margin-bottom: 0.7em;
+}
+
+.published-icon {
+    font-size: 1.8em;
 }
 
 /* --------- Not Found page --------- */

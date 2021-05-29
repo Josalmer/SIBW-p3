@@ -182,14 +182,22 @@ footer {
     justify-content: flex-end;
 }
 
-/* --------- SearchBar --------- */
+/* --------- Filter and Search Bar --------- */
 
-.searchbar {
+.search-bar {
+    width: 97%;
+}
+
+.search-input {
+    width: 100%;
+}
+
+.filter-bar {
     width: 95%;
     margin-top: 20px;
 }
 
-.search-input {
+.filter-input {
     width: 92%;
 }
 

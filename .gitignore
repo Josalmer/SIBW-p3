@@ -3,5 +3,5 @@
 /config/*
 /data/*
 /logs/*
+uploads
 .DS_Store
-/tutorial

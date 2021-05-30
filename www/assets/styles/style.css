@@ -207,6 +207,21 @@ footer {
     cursor: pointer;
 }
 
+#search-result {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    width: 60%;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    border: 3px solid rgb(223, 213, 213);
+}
+
+.events-result {
+    margin: 5px;
+}
+
 /* --------- Responsive Media Query --------- */
 
 @media only screen and (max-width: 800px) {

@@ -12,7 +12,7 @@ function searchEvents() {
                 if (this.readyState == 4 && this.status == 200) {
                     var response = JSON.parse(this.responseText);
                     if (response) {
-                        showEvents(response);
+                        showEvents(response, query);
                     } else {
                         noEvents();
                     }
@@ -25,14 +25,16 @@ function searchEvents() {
     }
 }
 
-function showEvents(events) {
+function showEvents(events, query) {
     eventsResult.innerHTML = '';
     events.forEach(event => {
         console.log(event);
         let eventI = document.createElement("div");
         let a = document.createElement("a");
-        let text = document.createTextNode(event.title);
-        a.appendChild(text);
+        let title = event.title;
+        let reg = new RegExp(query, 'i');
+        title = title.replace(reg, `<span class="remarked">${query}</span>`);
+        a.innerHTML = title;
         a.href = `/event/${event.id}`;
         eventI.appendChild(a);
         eventI.className = "events-result";

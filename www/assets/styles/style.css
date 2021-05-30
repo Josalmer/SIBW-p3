@@ -222,6 +222,11 @@ footer {
     margin: 5px;
 }
 
+.remarked {
+    font-weight: bolder;
+    color: red;
+}
+
 /* --------- Responsive Media Query --------- */
 
 @media only screen and (max-width: 800px) {

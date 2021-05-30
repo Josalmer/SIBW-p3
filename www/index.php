@@ -33,6 +33,8 @@
         include(dirname(__FILE__)."/controllers/comments.php");
     } else if (startsWith($uri, "/comment")) {
         include(dirname(__FILE__)."/controllers/comment.php");
+    } else if (startsWith($uri, "/search")) {
+        include(dirname(__FILE__)."/controllers/events_search.php");
     } else {
         include(dirname(__FILE__)."/controllers/landing.php");
     }

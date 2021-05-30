@@ -5,9 +5,9 @@
     $events = $eventsRepository->getAllEvents();
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $req = json_decode(stripslashes(file_get_contents("php://input")));
-        $query = $req->query;
+        $query = $_GET['search'];
         $events = $eventsRepository->searchEvents($query);
-        return $events;
+        echo json_encode($events);
+        return;
     }
 ?>

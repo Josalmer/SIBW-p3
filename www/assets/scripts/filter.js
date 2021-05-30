@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => setSearchListener());
+document.addEventListener("DOMContentLoaded", () => setFilterListener());
 
 var comments = null;
 var events = null;
 
-function setSearchListener() {
+function setFilterListener() {
     document.getElementById('filter-button').addEventListener('click', () => applySearch());
     var commentsTable = document.getElementsByClassName("comments-table")[0];
     if (commentsTable) {

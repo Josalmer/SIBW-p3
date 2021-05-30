@@ -54,6 +54,7 @@
         }
 
         public function searchEvents($query) {
+            $query = '%' . $query . '%';
             if (!isset($_SESSION['user']) || $_SESSION['user']['manager'] == 0) {
                 $queryResult = db::getDBSingleton()->query("SELECT id, title FROM events WHERE published = 1 AND (title LIKE ? OR body LIKE ?)", [$query, $query]);
             } else {
@@ -62,8 +63,6 @@
             if ($queryResult->num_rows > 0) {
                 $events = $queryResult->fetch_all(MYSQLI_ASSOC);
                 return $events;
-            } else {
-                return 'nodata';
             }
         }
 
